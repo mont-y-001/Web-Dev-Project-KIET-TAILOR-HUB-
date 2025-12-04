@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<script>
+  fetch('components/navbar.html')
+    .then(r => r.text())
+    .then(d => navbar.innerHTML = d);
+</script>
+
+<section class="max-w-3xl mx-auto px-4 py-20">
+  
+  <h1 class="text-4xl font-bold mb-6">Book Appointment</h1>
+
+  <form id="appointmentForm" class="grid gap-4">
+
+    <input 
+      id="name"
+      name="name"
+      class="border p-3 rounded"
+      placeholder="Full Name"
+      required
+    >
+    <input 
+  type="date"
+  id="date"
+  name="date"
+  class="border p-3 rounded"
+  required
+>
+
+
+    <input 
+      id="phone"
+      name="phone"
+      class="border p-3 rounded"
+      placeholder="Phone Number"
+      required
+    >
+
+    <input 
+      id="service"
+      name="service"
+      class="border p-3 rounded"
+      placeholder="Service (e.g., Suit Stitching)"
+      required
+    >
+
+    <textarea 
+      id="message"
+      name="message"
+      class="border p-3 rounded"
+      placeholder="Message"
+    ></textarea>
+
+    <button 
+      class="bg-yellow-400 px-6 py-3 rounded-full hover:bg-yellow-500 transition"
+    >
+      Submit
+    </button>
+  </form>
+
+</section>
+
+<script>
+document.getElementById("appointmentForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const date = document.getElementById("date").value;
+    const phone = document.getElementById("phone").value;
+    const service = document.getElementById("service").value;
+    const message = document.getElementById("message").value;
+
+    try {
+        const response = await fetch("http://localhost:5000/api/appointment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, phone, service, message, date })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert("Appointment submitted successfully!");
+            document.getElementById("appointmentForm").reset();
+        } else {
+            alert("Error: " + data.error);
+        }
+
+    } catch (err) {
+        alert("Server Error: " + err.message);
+    }
+});
+</script>
+
+</body>
+</html>

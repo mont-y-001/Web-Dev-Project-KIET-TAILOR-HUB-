@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - TailorHUB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("navbar").innerHTML = data);
+  </script>
+
+  <!-- HERO -->
+  <section class="bg-yellow-400 py-20">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h1 class="text-5xl font-bold text-gray-900">Our Services</h1>
+      <p class="text-gray-800 mt-4 text-lg">
+        Professional tailoring, custom stitching, alteration services and more — all in one place.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">What We Offer</h2>
+
+      <div class="grid md:grid-cols-3 gap-10">
+
+        <!-- Service Card -->
+        <div class="bg-white shadow-lg hover:shadow-2xl transition rounded-xl p-8">
+          <img src="https://images.pexels.com/photos/3738081/pexels-photo-3738081.jpeg" class="rounded-lg mb-4">
+          <h3 class="text-xl font-bold mb-2">Men’s Custom Stitching</h3>
+          <p class="text-gray-600">
+            Get perfectly tailored shirts, pants, suits, sherwanis and more, made to your exact measurements.
+          </p>
+        </div>
+
+        <div class="bg-white shadow-lg hover:shadow-2xl transition rounded-xl p-8">
+          <img src="https://images.pexels.com/photos/3738075/pexels-photo-3738075.jpeg" class="rounded-lg mb-4">
+          <h3 class="text-xl font-bold mb-2">Women’s Tailoring</h3>
+          <p class="text-gray-600">
+            Saree blouses, suits, lehengas, dresses — stitched with fine craftsmanship and precision.
+          </p>
+        </div>
+
+        <div class="bg-white shadow-lg hover:shadow-2xl transition rounded-xl p-8">
+          <img src="https://images.pexels.com/photos/462084/pexels-photo-462084.jpeg
+" class="rounded-lg mb-4">
+          <h3 class="text-xl font-bold mb-2">Alterations & Repairs</h3>
+          <p class="text-gray-600">
+            Jeans hemming, resizing, zip replacement, patchwork and all types of clothing fixes.
+          </p>
+        </div>
+
+        <div class="bg-white shadow-lg hover:shadow-2xl transition rounded-xl p-8">
+          <img src="https://images.pexels.com/photos/3738086/pexels-photo-3738086.jpeg" class="rounded-lg mb-4">
+          <h3 class="text-xl font-bold mb-2">Wedding & Party Wear</h3>
+          <p class="text-gray-600">
+            Expert designers for bridal lehengas, groom sherwanis, gowns and premium custom outfits.
+          </p>
+        </div>
+
+        <div class="bg-white shadow-lg hover:shadow-2xl transition rounded-xl p-8">
+          <img src="https://images.pexels.com/photos/3738099/pexels-photo-3738099.jpeg" class="rounded-lg mb-4">
+          <h3 class="text-xl font-bold mb-2">Kids Tailoring</h3>
+          <p class="text-gray-600">
+            Comfortable and stylish stitching for kids’ uniforms, traditional wear and daily outfits.
+          </p>
+        </div>
+
+        <div class="bg-white shadow-lg hover:shadow-2xl transition rounded-xl p-8">
+          <img src="https://images.pexels.com/photos/3738093/pexels-photo-3738093.jpeg" class="rounded-lg mb-4">
+          <h3 class="text-xl font-bold mb-2">Custom Design Requests</h3>
+          <p class="text-gray-600">
+            Bring your own design or let our designers create a unique piece tailored just for you.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA (Appointment) -->
+  <section class="py-20 bg-gray-900 text-white text-center">
+    <h2 class="text-3xl font-bold">Need a Tailor? Book an Appointment Now</h2>
+    <p class="mt-2 text-gray-300">Fast, professional, and done your way.</p>
+
+    <a href="appointment.html"
+      class="mt-6 inline-block bg-yellow-400 text-black font-semibold px-8 py-3 rounded-full shadow hover:scale-105 transition">
+      Book Appointment
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white py-6 text-center">
+    <p>© 2025 TailorHUB. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

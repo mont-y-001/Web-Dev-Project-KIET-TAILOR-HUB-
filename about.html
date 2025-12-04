@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - TailorHUB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+  <script>
+    fetch("components/navbar.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("navbar").innerHTML = data);
+  </script>
+
+  <!-- HERO SECTION -->
+  <section class="bg-yellow-400 py-20">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h1 class="text-5xl font-bold text-gray-900">About TailorHUB</h1>
+      <p class="text-gray-800 mt-4 text-lg">
+        Your trusted platform for modern, reliable, and high-quality tailoring services.
+      </p>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+
+      <div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Story</h2>
+        <p class="text-gray-600 leading-relaxed">
+          TailorHUB began with a simple mission — connect customers with skilled and trusted local
+          tailors who provide professional stitching, alterations, and custom design work.
+          We realized people struggle to find reliable tailoring services, so we created a
+          platform that brings tailors and customers together seamlessly.
+        </p>
+        <p class="text-gray-600 mt-4 leading-relaxed">
+          Whether you need a suit tailored for a special event, a kurti stitched to perfection,
+          or your favorite clothing repaired, TailorHUB ensures quality and convenience every time.
+        </p>
+      </div>
+
+      <div>
+        <img
+          src="homeimg.jpeg"
+          class="rounded-xl shadow-lg"
+          alt="Tailor Shop Image"
+        >
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEW SECTION: WHY CHOOSE US -->
+  <section class="py-20 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+
+      <h2 class="text-3xl font-bold text-gray-900">Why Choose TailorHUB?</h2>
+      <p class="text-gray-600 mt-3">What makes us different from traditional tailoring services?</p>
+
+      <div class="grid md:grid-cols-3 gap-10 mt-12">
+
+        <div class="bg-white p-8 rounded-xl shadow hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Experienced Tailors</h3>
+          <p class="text-gray-600">
+            We collaborate with certified and highly skilled tailors to ensure professional results.
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Fast Turnaround</h3>
+          <p class="text-gray-600">
+            Get your stitched or altered clothes delivered quickly without compromising quality.
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Doorstep Service</h3>
+          <p class="text-gray-600">
+            Schedule a pickup and delivery from your home—more convenience, less hassle.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BIG FOOTER -->
+  <footer class="bg-black text-gray-300 py-16 mt-20">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+
+      <!-- BRAND -->
+      <div>
+        <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+          <span class="bg-yellow-400 text-black px-3 py-1 rounded">✂️</span>
+          TailorHUB
+        </h2>
+        <p class="mt-4 text-gray-400">
+          Modern, professional, and customer-focused tailoring services made simple.
+        </p>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div>
+        <h3 class="text-xl font-semibold text-white mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+          <li><a href="about.html" class="hover:text-yellow-400">About</a></li>
+          <li><a href="services.html" class="hover:text-yellow-400">Services</a></li>
+          <li><a href="appointment.html" class="hover:text-yellow-400">Appointment</a></li>
+        </ul>
+      </div>
+
+      <!-- SERVICES -->
+      <div>
+        <h3 class="text-xl font-semibold text-white mb-4">Our Services</h3>
+        <ul class="space-y-2">
+          <li>Stitching</li>
+          <li>Alteration</li>
+          <li>Custom Design</li>
+          <li>Repair & Fitting</li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div>
+        <h3 class="text-xl font-semibold text-white mb-4">Contact Us</h3>
+        <p class="text-gray-400">📍 Ghaziabad, India</p>
+        <p class="text-gray-400 mt-1">📞 +91 98765 43210</p>
+        <p class="text-gray-400 mt-1">✉️ support@tailorhub.com</p>
+      </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center text-gray-500 mt-12 border-t border-gray-700 pt-6">
+      © 2025 TailorHUB — All Rights Reserved.
+    </div>
+
+  </footer>
+
+</body>
+</html>

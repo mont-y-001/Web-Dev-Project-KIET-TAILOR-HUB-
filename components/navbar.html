@@ -1,0 +1,49 @@
+<nav class='w-full bg-white shadow-sm sticky top-0 z-50'>
+  <div class='max-w-6xl mx-auto px-4 py-4 flex justify-between items-center'>
+    
+    <a href='index.html' class='text-2xl font-bold flex items-center gap-2'>
+      <span class='bg-black text-yellow-400 w-10 h-10 rounded-xl flex items-center justify-center'>✂️</span>
+      Tailor<span class='text-yellow-400'>HUB</span>
+    </a>
+
+    <div class='hidden md:flex gap-6 text-gray-700 items-center'>
+      <a href='index.html'>Home</a>
+      <a href='about.html'>About</a>
+      <a href='services.html'>Services</a>
+      <a href='appointment.html'>Appointment</a>
+      <a href='team.html'>Team</a>
+      <a href='contact.html'>Contact</a>
+
+      <!-- SIGN IN BUTTON -->
+      <a href='login.html' class="ml-4 bg-yellow-400 px-4 py-2 rounded-full hover:bg-yellow-500 transition">
+        Sign In
+      </a>
+    </div>
+
+    <button id='mobileBtn' class='md:hidden text-2xl'>☰</button>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id='mobileMenu' class='hidden md:hidden flex-col px-6 pb-3 gap-3 text-gray-700'>
+    <a href='index.html'>Home</a>
+    <a href='about.html'>About</a>
+    <a href='services.html'>Services</a>
+    <a href='appointment.html'>Appointment</a>
+    <a href='team.html'>Team</a>
+    <a href='contact.html'>Contact</a>
+
+    <!-- SIGN IN BUTTON (mobile) -->
+    <a href='login.html' class="bg-yellow-400 px-4 py-2 rounded-full w-32 mt-3 text-center hover:bg-yellow-500 transition">
+      Sign In
+    </a>
+  </div>
+</nav>
+
+<script>
+  const mobileBtn = document.getElementById("mobileBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  mobileBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
