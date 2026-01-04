@@ -1,7 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
@@ -11,9 +12,13 @@ export default function Navbar() {
     navigate("/login");
   };
 
+  const isProvider = role === "provider";
+  const isProviderRoute = location.pathname.startsWith("/provider");
+
   return (
     <nav className="bg-white shadow sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
         {/* LOGO */}
         <Link to="/" className="text-2xl font-bold">
           ✂️ <span className="text-yellow-400">TailorHUB</span>
@@ -21,33 +26,39 @@ export default function Navbar() {
 
         {/* LINKS */}
         <ul className="hidden md:flex gap-6 font-medium items-center">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/services">Services</Link></li>
-          <li><Link to="/team">Team</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
 
-          {/* ✅ APPOINTMENT – ONLY FOR CUSTOMER */}
-          {token && role === "user" && (
-            <li>
-              <Link
-                to="/appointment"
-                className="text-yellow-500 font-semibold"
-              >
-                Appointment
-              </Link>
-            </li>
+          {/* CUSTOMER LINKS */}
+          {!isProvider && (
+            <>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/services">Services</Link></li>
+              <li><Link to="/team">Team</Link></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+
+              {token && (
+                <li className="text-yellow-500 font-semibold">
+                  <Link to="/appointment">Appointment</Link>
+                </li>
+              )}
+            </>
+          )}
+
+          {/* PROVIDER LINKS */}
+          {isProvider && isProviderRoute && (
+            <>
+              <li><Link to="/provider/dashboard">Dashboard</Link></li>
+              <li><Link to="/provider/services">My Services</Link></li>
+              <li><Link to="/provider/appointments">Appointments</Link></li>
+            </>
           )}
         </ul>
 
-        {/* AUTH BUTTONS */}
+        {/* AUTH */}
         <div className="flex gap-3">
           {!token ? (
             <>
-              <Link
-                to="/login"
-                className="border px-4 py-2 rounded-full"
-              >
+              <Link to="/login" className="border px-4 py-2 rounded-full">
                 Login
               </Link>
               <Link
@@ -66,6 +77,7 @@ export default function Navbar() {
             </button>
           )}
         </div>
+
       </div>
     </nav>
   );

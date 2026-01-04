@@ -29,17 +29,30 @@ export default function Appointment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!provider) {
-      alert("Please select a provider");
+    if (!token) {
+      alert("Please login first");
       return;
     }
+
+    if (!provider) {
+      alert("Please select a tailor");
+      return;
+    }
+
+    console.log({
+      provider,
+      service,
+      phone,
+      date,
+      message,
+    });
 
     try {
       const res = await fetch("http://localhost:5000/api/appointments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // 🔥 MUST
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           provider,
@@ -51,14 +64,15 @@ export default function Appointment() {
       });
 
       const data = await res.json();
+      console.log("RESPONSE:", data);
 
       if (data.success) {
         alert("Appointment booked successfully!");
+        setProvider("");
         setService("");
         setPhone("");
         setDate("");
         setMessage("");
-        setProvider("");
       } else {
         alert(data.message || "Failed to book appointment");
       }

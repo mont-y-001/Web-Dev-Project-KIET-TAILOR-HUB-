@@ -5,29 +5,32 @@ export default function Team() {
     {
       name: "Mohit Yadav",
       role: "Frontend Developer",
-      img: "/team/mohit.jpg",
-      link: "https://your-portfolio-link.com",
-    },
-    {
-      name: "Nitin Saini",
-      role: "UI/UX Designer",
-      img: "/team/nitin.jpg",
-      link: "https://your-portfolio-link.com",
+      img: "/team/Mohit-Yadav/mohit-yadav.jpeg",
+      link: "/team/Mohit-Yadav/",
     },
     {
       name: "Radwa",
       role: "Database Administration",
-      img: "/team/radwa.jpg",
+      img: "/team/Radwa/radwaphoto.jpeg",
+      link: "/team/Radwa/",
+    },
+    {
+      name: "Nitin Saini",
+      role: "UI/UX Designer",
+      img: "/team/Nitin-Saini/portfolio-1.jpg",
+      link: "/team/Nitin-Saini/",
     },
     {
       name: "Prashant",
       role: "Backend Developer",
-      img: "/team/prashant.jpg",
+      img: "/team/Prashant/prashant.jpg",
+      link: "/team/Prashant/",
     },
     {
       name: "Mansha Sharma",
       role: "Testing",
-      img: "/team/mansha.jpg",
+      img: "/team/Mansha-Sharma/ManshaSharma.jpeg",
+      link: "/team/Mansha-Sharma/",
     },
   ];
 
@@ -35,7 +38,9 @@ export default function Team() {
     <div className="bg-gray-50">
       {/* HEADER */}
       <section className="bg-yellow-400 py-20 text-center">
-        <h1 className="text-5xl font-bold text-gray-900">Meet Our Team</h1>
+        <h1 className="text-5xl font-bold text-gray-900">
+          Meet Our Team
+        </h1>
         <p className="text-gray-800 text-lg mt-3">
           Passionate individuals driving TailorHUB forward.
         </p>

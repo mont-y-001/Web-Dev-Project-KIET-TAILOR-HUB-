@@ -47,8 +47,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TRUST STATS */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-4 gap-8 text-center">
+          <Stat number="500+" label="Expert Tailors" />
+          <Stat number="5k+" label="Happy Customers" />
+          <Stat number="10k+" label="Orders Completed" />
+          <Stat number="4.9★" label="Average Rating" />
+        </div>
+      </section>
+
       {/* HOW IT WORKS */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold">How It Works</h2>
           <p className="text-gray-600 mt-2">
@@ -76,6 +86,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WHY CHOOSE US */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold">Why Choose TailorHUB?</h2>
+          <p className="text-gray-600 mt-2">
+            We connect quality craftsmanship with modern convenience.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-10 mt-12">
+            <Feature
+              title="Verified Tailors"
+              desc="Every tailor is verified to ensure quality and trust."
+            />
+            <Feature
+              title="Affordable Pricing"
+              desc="Transparent pricing with no hidden charges."
+            />
+            <Feature
+              title="On-Time Delivery"
+              desc="We respect your time and deliver as promised."
+            />
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 text-center">
@@ -85,25 +120,43 @@ export default function Home() {
           </p>
 
           <div className="grid md:grid-cols-4 gap-8 mt-12">
-            <Service
-              title="Custom Tailoring"
-              img="https://images.pexels.com/photos/7671166/pexels-photo-7671166.jpeg"
-            />
-            <Service
-              title="Alterations & Repairs"
-              img="https://images.pexels.com/photos/3738055/pexels-photo-3738055.jpeg"
-            />
-            <Service
-              title="Special Occasions"
-              img="https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg"
-            />
-            <Service
-              title="Fabric Consultation"
-              img="https://images.pexels.com/photos/164839/pexels-photo-164839.jpeg"
-            />
+            <Service title="Custom Tailoring" img="https://images.pexels.com/photos/7671166/pexels-photo-7671166.jpeg" />
+            <Service title="Alterations & Repairs" img="https://images.pexels.com/photos/3738055/pexels-photo-3738055.jpeg" />
+            <Service title="Special Occasions" img="https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg" />
+            <Service title="Fabric Consultation" img="https://images.pexels.com/photos/164839/pexels-photo-164839.jpeg" />
           </div>
         </div>
       </section>
+
+
+      {/* TESTIMONIALS */}
+<section className="py-20 bg-white">
+  <div className="max-w-6xl mx-auto px-4 text-center">
+    <h2 className="text-4xl font-bold">What Our Customers Say</h2>
+    <p className="text-gray-600 mt-2">
+      Trusted by thousands of happy customers.
+    </p>
+
+    <div className="grid md:grid-cols-3 gap-10 mt-12">
+      <Testimonial
+        name="Amit Sharma"
+        role="Customer"
+        text="TailorHUB helped me find an excellent tailor in minutes. Perfect fitting and on-time delivery!"
+      />
+      <Testimonial
+        name="Neha Verma"
+        role="Fashion Designer"
+        text="Amazing platform! Very professional tailors and smooth appointment process."
+      />
+      <Testimonial
+        name="Rahul Khan"
+        role="Customer"
+        text="Highly recommended for anyone looking for premium tailoring services."
+      />
+    </div>
+  </div>
+</section>
+
 
       {/* CTA */}
       <section className="py-16 bg-yellow-400 text-center">
@@ -120,27 +173,15 @@ export default function Home() {
           Get Started
         </Link>
       </section>
-
-      {/* FOOTER */}
-      <footer className="bg-black text-white py-10">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h3 className="text-xl font-bold">TailorHUB</h3>
-          <p className="text-gray-400 mt-2">
-            Premium tailoring services at your fingertips.
-          </p>
-          <p className="text-gray-500 mt-4 text-sm">
-            © 2025 TailorHUB. All Rights Reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
 
-/* Components */
+/* COMPONENTS */
+
 function Step({ title, desc }) {
   return (
-    <div className="p-6 shadow rounded-xl bg-gray-50">
+    <div className="p-6 shadow rounded-xl bg-white">
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-gray-600">{desc}</p>
     </div>
@@ -155,3 +196,32 @@ function Service({ title, img }) {
     </div>
   );
 }
+
+function Feature({ title, desc }) {
+  return (
+    <div className="p-6 bg-gray-50 rounded-xl shadow">
+      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      <p className="text-gray-600">{desc}</p>
+    </div>
+  );
+}
+
+function Stat({ number, label }) {
+  return (
+    <div>
+      <h3 className="text-4xl font-bold text-yellow-500">{number}</h3>
+      <p className="text-gray-600 mt-1">{label}</p>
+    </div>
+  );
+}
+
+function Testimonial({ name, role, text }) {
+  return (
+    <div className="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+      <p className="text-gray-600 italic">“{text}”</p>
+      <h4 className="mt-4 font-bold">{name}</h4>
+      <p className="text-sm text-gray-500">{role}</p>
+    </div>
+  );
+}
+
