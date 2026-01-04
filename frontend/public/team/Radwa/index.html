@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radwa Fakhruddin</title>
+
+    <!-- Poppins font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root{
+        --yellow-500: #F59E0B; /* Tailwind yellow-500 */
+        --bg: #F9FAFB; /* gray-50 / very light */
+        --text: #0f172a; /* dark slate for readable text */
+        --muted: #6b7280; /* muted gray */
+        --card: #ffffff; /* white cards */
+        --radius: 14px;
+      }
+
+      *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+      html,body{height:100%}
+      body{
+        background:var(--bg);
+        color:var(--text);
+        -webkit-font-smoothing:antialiased;
+        scroll-behavior:smooth;
+        padding-top:84px; /* reserve space for fixed nav */
+      }
+
+      /* NAV */
+      nav{
+        position:fixed;left:0;top:0;width:100%;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.85));
+        backdrop-filter: blur(6px);
+        box-shadow:0 6px 20px rgba(15,23,42,0.06);
+        z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;
+      }
+
+      .logo{font-weight:700;color:var(--text);font-size:1.45rem}
+      nav ul{display:flex;gap:20px;list-style:none;align-items:center}
+      nav a{color:var(--text);text-decoration:none;font-weight:500}
+      nav a:hover{color:var(--yellow-500);transform:translateY(-2px)}
+
+      /* Main layout */
+      main{max-width:1200px;margin:40px auto;padding:0 20px}
+
+      /* Hero */
+      .hero{display:flex;gap:30px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+      .hero-left{flex:1;min-width:300px}
+      .hero-right{flex:0 0 360px;text-align:center}
+
+      .intro{font-size:2.25rem;font-weight:700;line-height:1.05;color:var(--text)}
+      .intro .accent{color:var(--yellow-500)}
+      .sub{margin-top:10px;color:var(--muted);font-size:1.05rem}
+
+      .buttons{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+      .btn{background:var(--yellow-500);color:white;border:none;padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;box-shadow:0 8px 20px rgba(245,158,11,0.12);text-decoration:none}
+      .btn.secondary{background:transparent;border:1.5px solid rgba(15,23,42,0.06);color:var(--text)}
+      .btn:focus{outline:3px solid rgba(245,158,11,0.16)}
+
+      .hero-right img{width:280px;border-radius:18px;border:6px solid rgba(245,158,11,0.08)}
+
+      /* Sections */
+      section{margin-top:60px}
+      section h2{text-align:center;color:var(--yellow-500);font-size:1.9rem;margin-bottom:18px}
+
+      /* About */
+      .about-grid{display:flex;gap:30px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+      .about-image{flex:0 0 320px}
+      .about-image img{width:100%;border-radius:14px;border:4px solid rgba(15,23,42,0.04)}
+      .about-text{flex:1;min-width:260px}
+      .about-text p{color:var(--text);line-height:1.7;margin-bottom:12px;font-size:1rem}
+
+      /* Skills */
+      .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;max-width:900px;margin:0 auto}
+      .skill{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.04);text-align:center;font-weight:600}
+
+      /* Timeline / Qualification */
+      .timeline{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+      .qual{background:var(--card);padding:18px;border-radius:12px;display:flex;gap:18px;align-items:center;box-shadow:0 8px 24px rgba(15,23,42,0.04)}
+      .q-year{font-weight:700;color:var(--muted);min-width:140px}
+      .q-details h3{margin-bottom:6px}
+      .q-details p{color:var(--muted)}
+
+      /* Projects */
+      .projects{display:flex;flex-wrap:wrap;gap:18px;justify-content:center}
+      .card{background:var(--card);padding:18px;border-radius:12px;width:320px;box-shadow:0 10px 30px rgba(15,23,42,0.06)}
+      .card h3{color:var(--text);margin-bottom:8px}
+      .card p{color:var(--muted);line-height:1.5}
+
+      /* Contact */
+      .contact-form{max-width:560px;margin:0 auto;background:var(--card);padding:20px;border-radius:12px;box-shadow:0 10px 30px rgba(15,23,42,0.05)}
+      .contact-form input,.contact-form textarea{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);margin-bottom:12px}
+      .contact-form button{width:100%;padding:12px;border-radius:10px;border:none;background:var(--yellow-500);color:white;font-weight:700}
+
+      footer{margin:40px 0;text-align:center;color:var(--muted)}
+
+      @media(max-width:880px){
+        .hero{padding:8px}
+        .intro{font-size:1.6rem}
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">Radwa Fakhruddin</div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#qualification">Qualification</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- Hero -->
+      <section id="home" class="hero">
+        <div class="hero-left">
+          <div class="intro">Hi, I'm <span class="accent">Radwa Fakhruddin</span></div>
+          <div class="sub">Frontend Developer focused on building responsive, accessible interfaces with strong attention to performance and user experience.</div>
+
+          <div id="typed-holder" style="margin-top:14px;color:var(--muted);font-weight:600">
+            <span id="element"></span>
+          </div>
+
+          <div class="buttons">
+            <a class="btn" href="My Resume.pdf" download>Download Resume</a>
+            <a class="btn secondary" href="https://www.linkedin.com/in/radwa-fakhruddin-999449233/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <!-- Replace with your photo file -->
+          <img src="radwaphoto.jpeg" alt="Radwa Fakhruddin" />
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about">
+        <h2>About Me</h2>
+        <div class="about-grid">
+          <div class="about-image">
+            <img src="work.webp" alt="Mohit working on UI" />
+          </div>
+          <div class="about-text">
+           <p>
+  I'm <strong>Radwa Fakhruddin</strong>, a frontend developer focused on building fast, accessible, and visually precise user interfaces. I work with modern JavaScript and React to create responsive, component-driven UIs using tools like Tailwind CSS and Figma.
+</p>
+
+<p>
+  I enjoy developing smooth, scalable, and easy-to-maintain interfaces that deliver a great user experience across devices. I like collaborating with designers and backend engineers to turn ideas into polished, production-ready web applications.
+</p>
+
+
+            <p style="color:var(--muted);font-weight:600">Available for internships and freelance frontend roles.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+          <div class="skill">HTML & Semantic Structure</div>
+          <div class="skill">CSS / SCSS & Modern Layouts</div>
+          <div class="skill">JavaScript (ES6+)</div>
+          <div class="skill">React & Hooks</div>
+          <div class="skill">Responsive Design</div>
+          <div class="skill">Tailwind CSS</div>
+          <div class="skill">Figma / UI Design</div>
+          <div class="skill">Accessibility (a11y)</div>
+          <div class="skill">Git & GitHub</div>
+        </div>
+      </section>
+
+      <!-- Qualification -->
+      <section id="qualification">
+        <h2>Qualification</h2>
+        <div class="timeline">
+          <div class="qual">
+            <div class="q-year">BCA 2020 - 2023</div>
+            <div class="q-details">
+              <h3>Chaudhary Charan Singh University</h3>
+              <p>Specialized in Web Development and Frontend Engineering.</p>
+            </div>
+          </div>
+
+          <div class="qual">
+            <div class="q-year">Certs & Courses</div>
+            <div class="q-details">
+              <h3>Frontend focused courses</h3>
+              <p>React, Advanced CSS, Responsive Web Design, Accessibility fundamentals.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects">
+          <div class="card">
+            <h3>Portfolio Website</h3>
+            <p>A responsive personal website built with React and Tailwind to showcase projects and case studies.</p>
+          </div>
+
+          <div class="card">
+            <h3>Taskify — ToDo App</h3>
+            <p>A performant task manager with local storage, drag & drop, and accessible keyboard interactions.</p>
+          </div>
+
+          <div class="card">
+            <h3>Landing Page Clone</h3>
+            <p>Pixel-perfect clone of a marketing landing page focusing on responsive layout and animations.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-form">
+          <form action="contact.php" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <input type="tel" name="phone" placeholder="Your Phone" />
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </section>
+
+      <footer>
+        © "Radwa Fakhruddin" • Built with care • Available on LinkedIn
+      </footer>
+    </main>
+
+    <!-- Typed JS -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+      var typed = new Typed('#element', {
+        strings: ['React Enthusiast', 'Accessibility Advocate', 'UI Animator', 'Pixel-Perfect Coder'],
+        loop: true,
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 1400,
+      });
+    </script>
+  </body>
+</html>

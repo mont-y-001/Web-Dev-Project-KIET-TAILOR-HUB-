@@ -1,75 +1,86 @@
-import ServiceCard from "../components/ServiceCard";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Services() {
-  const services = [
-    {
-      title: "Men’s Custom Stitching",
-      desc: "Perfectly tailored shirts, suits, and traditional wear.",
-      img: "https://images.pexels.com/photos/3738081/pexels-photo-3738081.jpeg",
-    },
-    {
-      title: "Women’s Tailoring",
-      desc: "Blouses, lehengas, dresses stitched to perfection.",
-      img: "https://images.pexels.com/photos/3738075/pexels-photo-3738075.jpeg",
-    },
-    {
-      title: "Alterations & Repairs",
-      desc: "Resizing, hemming, zips, patchwork & repairs.",
-      img: "https://images.pexels.com/photos/462084/pexels-photo-462084.jpeg",
-    },
-    {
-      title: "Wedding & Party Wear",
-      desc: "Premium outfits for special occasions.",
-      img: "https://images.pexels.com/photos/3738086/pexels-photo-3738086.jpeg",
-    },
-    {
-      title: "Kids Tailoring",
-      desc: "Comfortable and stylish outfits for kids.",
-      img: "https://images.pexels.com/photos/3738099/pexels-photo-3738099.jpeg",
-    },
-    {
-      title: "Custom Design Requests",
-      desc: "Bring your own design or let us create one.",
-      img: "https://images.pexels.com/photos/3738093/pexels-photo-3738093.jpeg",
-    },
-  ];
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/services");
+        const data = await res.json();
+        setServices(data);
+      } catch (err) {
+        console.error("Failed to load services");
+      }
+    };
+
+    fetchServices();
+  }, []);
 
   return (
-    <div className="bg-gray-50">
-      {/* HERO */}
-      <section className="bg-yellow-400 py-20 text-center">
-        <h1 className="text-5xl font-bold text-gray-900">Our Services</h1>
-        <p className="text-gray-800 mt-4 text-lg">
-          Professional tailoring services — all in one place.
-        </p>
-      </section>
+    <section className="bg-gray-50 py-20">
+      <div className="max-w-7xl mx-auto px-6">
 
-      {/* SERVICES GRID */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
-          {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+        {/* HEADER */}
+        <div className="text-center mb-14">
+          <h1 className="text-5xl font-bold text-gray-900">
+            Tailoring Services
+          </h1>
+          <p className="text-gray-600 mt-3 text-lg">
+            Discover expert tailors and premium stitching services
+          </p>
+        </div>
+
+        {/* SERVICES GRID */}
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+          {services.map((service) => (
+            <div
+              key={service._id}
+              className="bg-white rounded-2xl shadow hover:shadow-2xl transition overflow-hidden"
+            >
+              {/* IMAGE */}
+     <img
+  src={`http://localhost:5000${service.image}`}
+  alt={service.title}
+  className="h-56 w-full object-cover rounded-t-2xl"
+/>
+
+
+              {/* CONTENT */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold">
+                  {service.title}
+                </h3>
+
+                <p className="text-gray-600 mt-2">
+                  {service.description}
+                </p>
+
+                <p className="mt-3 text-sm text-gray-500">
+                  Tailor:{" "}
+                  <span className="font-semibold">
+                    {service.provider?.name || "Expert Tailor"}
+                  </span>
+                </p>
+
+                <div className="flex justify-between items-center mt-5">
+                  <span className="text-lg font-bold text-yellow-500">
+                    ₹ {service.price}
+                  </span>
+
+                  <a
+                    href="/appointment"
+                    className="bg-yellow-400 px-4 py-2 rounded-full font-semibold hover:bg-yellow-500"
+                  >
+                    Book Now
+                  </a>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
-      </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-gray-900 text-white text-center">
-        <h2 className="text-3xl font-bold">
-          Need a Tailor? Book an Appointment Now
-        </h2>
-        <p className="mt-2 text-gray-300">
-          Fast, professional, and done your way.
-        </p>
-
-        <Link
-          to="/appointment"
-          className="mt-6 inline-block bg-yellow-400 text-black font-semibold px-8 py-3 rounded-full shadow hover:scale-105 transition"
-        >
-          Book Appointment
-        </Link>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

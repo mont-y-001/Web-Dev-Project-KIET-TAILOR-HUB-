@@ -15,6 +15,10 @@ const ServiceSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+   image: {
+      type: String, // Cloudinary image URL
+      required: false,
+    },
 
   price: {
     type: Number,
