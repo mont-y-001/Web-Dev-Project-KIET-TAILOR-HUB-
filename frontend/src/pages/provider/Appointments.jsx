@@ -11,7 +11,7 @@ export default function Appointments() {
   const fetchAppointments = async () => {
     try {
       const res = await fetch(
-        "http://localhost:5000/api/appointments/provider",
+        `${process.env.REACT_APP_API_URL}/api/appointments/provider`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -31,7 +31,7 @@ export default function Appointments() {
   /* UPDATE STATUS */
   const updateStatus = async (id, status) => {
     try {
-      await fetch(`http://localhost:5000/api/appointments/${id}`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/api/appointments/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

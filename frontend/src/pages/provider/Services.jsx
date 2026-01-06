@@ -20,7 +20,7 @@ export default function Services() {
 
   /* FETCH */
   const fetchServices = async () => {
-    const res = await fetch("http://localhost:5000/api/services/my", {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/services/my`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
@@ -43,8 +43,8 @@ export default function Services() {
 
     try {
       const url = editingId
-        ? `http://localhost:5000/api/services/${editingId}`
-        : "http://localhost:5000/api/services";
+        ? `${process.env.REACT_APP_API_URL}/api/services/${editingId}`
+        : `${process.env.REACT_APP_API_URL}/api/services`;
 
       const method = editingId ? "PUT" : "POST";
 
@@ -86,7 +86,7 @@ export default function Services() {
   const deleteService = async (id) => {
     if (!window.confirm("Delete this service?")) return;
 
-    await fetch(`http://localhost:5000/api/services/${id}`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/services/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -179,7 +179,7 @@ export default function Services() {
             className="bg-white p-5 rounded-xl shadow flex gap-4"
           >
             <img
-              src={`http://localhost:5000${s.image}`}
+              src={`${process.env.REACT_APP_API_URL}${s.image}`}
               className="h-24 w-24 object-cover rounded"
               alt={s.title}
             />

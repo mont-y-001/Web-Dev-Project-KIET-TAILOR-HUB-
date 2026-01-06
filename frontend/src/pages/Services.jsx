@@ -6,7 +6,7 @@ export default function Services() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/services");
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/services`);
         const data = await res.json();
         setServices(data);
       } catch (err) {
@@ -40,7 +40,7 @@ export default function Services() {
             >
               {/* IMAGE */}
      <img
-  src={`http://localhost:5000${service.image}`}
+  src={`${process.env.REACT_APP_API_URL}${service.image}`}
   alt={service.title}
   className="h-56 w-full object-cover rounded-t-2xl"
 />

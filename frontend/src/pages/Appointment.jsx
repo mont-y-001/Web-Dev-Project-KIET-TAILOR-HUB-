@@ -14,7 +14,7 @@ export default function Appointment() {
   useEffect(() => {
     const fetchProviders = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/users/providers");
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users/providers`);
         const data = await res.json();
         setProviders(data);
       } catch (err) {
@@ -48,7 +48,7 @@ export default function Appointment() {
     });
 
     try {
-      const res = await fetch("http://localhost:5000/api/appointments", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/appointments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
