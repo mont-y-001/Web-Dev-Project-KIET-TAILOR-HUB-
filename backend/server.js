@@ -1,10 +1,9 @@
-import dotenv from "dotenv";
-dotenv.config();
+import "dotenv/config";   // ✅ ONLY THIS
 
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
-import path from "path";
+
+import connectDB from "./config/db.js";
 
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -13,23 +12,28 @@ import serviceRoutes from "./routes/serviceRoutes.js";
 
 const app = express();
 
+/* MIDDLEWARE */
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ✅ make uploads folder public
-app.use("/uploads", express.static("uploads"));
-
+/* ROUTES */
 app.use("/api/auth", authRoutes);
 app.use("/api/appointments", appointmentRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/services", serviceRoutes);
 
-mongoose
-  .connect("mongodb://127.0.0.1:27017/tailorhub")
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
+/* ROOT TEST */
+app.get("/", (req, res) => {
+  res.send("TailorHub Backend Running 🚀");
+});
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+/* DB CONNECT */
+connectDB();
+
+/* SERVER */
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Backend running on port ${PORT}`);
+  console.log("SUPABASE_URL:", process.env.SUPABASE_URL);
 });

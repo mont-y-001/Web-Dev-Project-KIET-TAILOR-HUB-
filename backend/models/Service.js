@@ -1,33 +1,37 @@
 import mongoose from "mongoose";
 
-const ServiceSchema = new mongoose.Schema({
-  provider: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-
-  title: {
-    type: String,
-    required: true,
-  },
-
-  description: {
-    type: String,
-  },
-   image: {
-      type: String, // Cloudinary image URL
-      required: false,
+const ServiceSchema = new mongoose.Schema(
+  {
+    provider: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
 
-  price: {
-    type: Number,
-  },
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
 
-  createdAt: {
-    type: Date,
-    default: Date.now,
+    description: {
+      type: String,
+      trim: true,
+    },
+
+    image: {
+      type: String, // Supabase public image URL
+      required: true,
+    },
+
+    price: {
+      type: Number,
+      required: true,
+    },
   },
-});
+  {
+    timestamps: true, // createdAt + updatedAt automatically
+  }
+);
 
 export default mongoose.model("Service", ServiceSchema);

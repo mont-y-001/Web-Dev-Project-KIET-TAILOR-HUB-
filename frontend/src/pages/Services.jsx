@@ -6,7 +6,9 @@ export default function Services() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/services`);
+        const res = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/services`
+        );
         const data = await res.json();
         setServices(data);
       } catch (err) {
@@ -20,7 +22,6 @@ export default function Services() {
   return (
     <section className="bg-gray-50 py-20">
       <div className="max-w-7xl mx-auto px-6">
-
         {/* HEADER */}
         <div className="text-center mb-14">
           <h1 className="text-5xl font-bold text-gray-900">
@@ -39,18 +40,15 @@ export default function Services() {
               className="bg-white rounded-2xl shadow hover:shadow-2xl transition overflow-hidden"
             >
               {/* IMAGE */}
-     <img
-  src={`${process.env.REACT_APP_API_URL}${service.image}`}
-  alt={service.title}
-  className="h-56 w-full object-cover rounded-t-2xl"
-/>
-
+              <img
+                src={service.image}
+                alt={service.title}
+                className="h-56 w-full object-cover rounded-t-2xl"
+              />
 
               {/* CONTENT */}
               <div className="p-6">
-                <h3 className="text-xl font-bold">
-                  {service.title}
-                </h3>
+                <h3 className="text-xl font-bold">{service.title}</h3>
 
                 <p className="text-gray-600 mt-2">
                   {service.description}
@@ -79,7 +77,6 @@ export default function Services() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

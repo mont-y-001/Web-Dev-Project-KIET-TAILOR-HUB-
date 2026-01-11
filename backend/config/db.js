@@ -1,12 +1,13 @@
-
 import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/tailorhub");
-    console.log("MongoDB Connected (Local)");
+    await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 10000,
+    });
+    console.log("MongoDB Connected");
   } catch (err) {
-    console.error(err);
+    console.error("MongoDB connection failed:", err.message);
     process.exit(1);
   }
 };

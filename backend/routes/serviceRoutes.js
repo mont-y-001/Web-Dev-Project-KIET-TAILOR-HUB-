@@ -1,6 +1,7 @@
 import express from "express";
 import Service from "../models/Service.js";
 import { protect } from "../middleware/auth.js";
+import supabase from "../config/supabase.js";
 import upload from "../middleware/upload.js";
 
 const router = express.Router();
@@ -22,11 +23,30 @@ router.post(
         return res.status(400).json({ message: "Image is required" });
       }
 
+      // 🔥 Upload to Supabase
+      const file = req.file;
+      const fileName = `services/${Date.now()}-${file.originalname}`;
+
+      const { error } = await supabase.storage
+        .from("services")
+        .upload(fileName, file.buffer, {
+          contentType: file.mimetype,
+        });
+
+      if (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Image upload failed" });
+      }
+
+      const { data } = supabase.storage
+        .from("services")
+        .getPublicUrl(fileName);
+
       const service = await Service.create({
         title,
         description,
         price,
-        image: `/uploads/${req.file.filename}`,
+        image: data.publicUrl, // ✅ FULL URL
         provider: req.user._id,
       });
 
@@ -58,6 +78,7 @@ router.put(
   async (req, res) => {
     try {
       const service = await Service.findById(req.params.id);
+
       if (!service) {
         return res.status(404).json({ message: "Service not found" });
       }
@@ -73,7 +94,24 @@ router.put(
       if (price) service.price = price;
 
       if (req.file) {
-        service.image = `/uploads/${req.file.filename}`;
+        const file = req.file;
+        const fileName = `services/${Date.now()}-${file.originalname}`;
+
+        const { error } = await supabase.storage
+          .from("services")
+          .upload(fileName, file.buffer, {
+            contentType: file.mimetype,
+          });
+
+        if (error) {
+          return res.status(500).json({ message: "Image upload failed" });
+        }
+
+        const { data } = supabase.storage
+          .from("services")
+          .getPublicUrl(fileName);
+
+        service.image = data.publicUrl;
       }
 
       await service.save();

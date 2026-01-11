@@ -8,26 +8,35 @@ export default function Services() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [image, setImage] = useState(null); // 🔥 file object
+  const [image, setImage] = useState(null);
 
   const token = localStorage.getItem("token");
 
-  /* IMAGE */
+  /* IMAGE HANDLER */
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
-    setImage(file); // ✅ direct file
+    setImage(file);
   };
 
-  /* FETCH */
+  /* FETCH MY SERVICES */
   const fetchServices = async () => {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/services/my`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = await res.json();
-    setServices(data);
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/services/my`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await res.json();
+      setServices(data);
+    } catch (err) {
+      console.error("Failed to fetch services");
+    }
   };
 
-  /* ADD / UPDATE */
+  /* ADD / UPDATE SERVICE */
   const submitService = async (e) => {
     e.preventDefault();
 
@@ -37,7 +46,7 @@ export default function Services() {
     }
 
     if (!editingId && !image) {
-      alert("Please upload an image");
+      alert("Image is required");
       return;
     }
 
@@ -48,7 +57,6 @@ export default function Services() {
 
       const method = editingId ? "PUT" : "POST";
 
-      // ✅ FormData
       const formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
@@ -62,7 +70,6 @@ export default function Services() {
         method,
         headers: {
           Authorization: `Bearer ${token}`,
-          // ❌ Content-Type mat set karo
         },
         body: formData,
       });
@@ -77,30 +84,31 @@ export default function Services() {
       resetForm();
       fetchServices();
     } catch (err) {
-      console.error("FRONTEND ERROR:", err);
       alert("Network error");
     }
   };
 
-  /* DELETE */
+  /* DELETE SERVICE */
   const deleteService = async (id) => {
     if (!window.confirm("Delete this service?")) return;
 
     await fetch(`${process.env.REACT_APP_API_URL}/api/services/${id}`, {
       method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     fetchServices();
   };
 
-  /* EDIT */
+  /* EDIT SERVICE */
   const editService = (s) => {
     setEditingId(s._id);
     setTitle(s.title);
     setDescription(s.description || "");
-    setPrice(s.price || "");
-    setImage(null); // 🔥 image optional in update
+    setPrice(s.price);
+    setImage(null);
   };
 
   const resetForm = () => {
@@ -117,9 +125,7 @@ export default function Services() {
 
   return (
     <ProviderLayout>
-      <h1 className="text-3xl font-bold text-center mb-8">
-        My Services
-      </h1>
+      <h1 className="text-3xl font-bold text-center mb-8">My Services</h1>
 
       {/* FORM */}
       <form
@@ -147,6 +153,7 @@ export default function Services() {
           placeholder="Price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          required
         />
 
         <input
@@ -171,7 +178,7 @@ export default function Services() {
         )}
       </form>
 
-      {/* LIST */}
+      {/* SERVICES LIST */}
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
         {services.map((s) => (
           <div
@@ -179,17 +186,15 @@ export default function Services() {
             className="bg-white p-5 rounded-xl shadow flex gap-4"
           >
             <img
-              src={`${process.env.REACT_APP_API_URL}${s.image}`}
-              className="h-24 w-24 object-cover rounded"
+              src={s.image}
               alt={s.title}
+              className="h-24 w-24 object-cover rounded"
             />
 
             <div className="flex-1">
               <h3 className="font-bold">{s.title}</h3>
               <p className="text-gray-600">{s.description}</p>
-              <p className="text-yellow-500 font-semibold">
-                ₹ {s.price}
-              </p>
+              <p className="text-yellow-500 font-semibold">₹ {s.price}</p>
 
               <div className="flex gap-3 mt-2">
                 <button

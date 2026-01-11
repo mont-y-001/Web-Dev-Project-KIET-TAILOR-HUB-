@@ -10,7 +10,6 @@ router.post("/register", async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
 
-    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({
@@ -19,11 +18,9 @@ router.post("/register", async (req, res) => {
       });
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user with role
-    const user = await User.create({
+    await User.create({
       name,
       email,
       password: hashedPassword,
@@ -47,7 +44,6 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check user
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({
@@ -56,7 +52,6 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    // Match password
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
       return res.status(401).json({
@@ -65,14 +60,13 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    // Generate token
+    // ✅ FIX: ENV BASED JWT SECRET
     const token = jwt.sign(
       { id: user._id, role: user.role },
-      "SECRET123",
+      process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
 
-    // 🔥 VERY IMPORTANT: SEND ROLE TO FRONTEND
     res.json({
       success: true,
       token,
