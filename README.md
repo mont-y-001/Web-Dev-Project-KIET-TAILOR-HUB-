@@ -88,13 +88,16 @@ TailorHub_Full_Stack/
 │
 └── README.md
 
-▶️ Running the Project Locally
+▶️ Running the Project Locally:
 Backend
 cd backend
 npm install
 npm run dev
 
+
+
 Frontend
 cd frontend
 npm install
 npm start
+
