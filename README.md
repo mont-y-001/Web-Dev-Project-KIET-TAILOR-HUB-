@@ -1,31 +1,100 @@
-🧵 Tailor Hub – MERN Stack Web Application
+# ✂️ TailorHub – Full Stack MERN Application
 
-Tailor Hub is a modern MERN-stack web application created for the KIET MCA Web Development Project. It is designed to help local tailors bring their services online, making it easier for customers to book stitching and alteration services digitally. The platform solves the lack of online visibility and manual order handling faced by small tailors by providing a complete online solution where tailors and customers interact seamlessly.
+TailorHub is a **full-stack web application** that connects customers with tailoring service providers.  
+Service providers can manage their services and upload images, while users can explore services and book appointments.
 
-Tailor Hub provides secure role-based authentication for customers and tailors using JWT. Tailors can manage their service listings, upload images, set pricing, and handle customer orders by updating their progress from pending to in-progress and finally completed. Customers can browse tailor profiles, explore available services, place custom stitching or alteration requests, and track their order status through a responsive dashboard. The system is fully API-driven and offers smooth frontend-backend communication through REST APIs.
+This project is **fully deployed and production-ready**, showcasing real-world backend, cloud storage, authentication, and deployment practices.
 
-The frontend is developed using React.js, supported by React Router for navigation and Axios for API requests. TailwindCSS or Bootstrap can be used for styling to ensure a clean, responsive, and modern user interface. The backend uses Node.js and Express.js, implementing secure authentication and clean API structuring. MongoDB with Mongoose is used as the primary database to store users, services, and orders, while image handling is supported via Cloudinary or Multer.
+---
 
-🚀 Features
-Customer Features
+## 🌐 Live Project
 
-Customers can explore local tailors, view service pricing, place orders for stitching or alterations, and track each order in real time using a dedicated dashboard.
+- **Frontend (Vercel):**  
+  https://frontend-xi-pearl-40.vercel.app/
 
-Tailor Features
+- **Backend API:**  
+  Deployed on Render
 
-Tailors can upload and manage their services, handle customer orders, update order progress, and improve their digital presence with profile and service images.
+- **GitHub Repository:**  
+  https://github.com/mont-y-001/TailorHub_Full_Stack
 
-Platform Capabilities
+---
 
-The entire platform is responsive, API-driven, visually simple, and easy to use. It includes a secure login and signup system, supports image uploads, and offers separate dashboards for customers and tailors.
+## 🚀 Features
 
-🛠️ Tech Stack
+### 👤 Authentication
+- User & Service Provider registration
+- Secure login using JWT authentication
+- Role-based access (user / provider)
+
+### 🧵 Services
+- Service providers can:
+  - Add new services
+  - Upload service images
+  - Update and delete services
+- Users can:
+  - View all available services
+  - See provider details
+
+### 🖼 Image Upload
+- Image uploads handled using **Multer (memory storage)**
+- Images stored securely in **Supabase Storage**
+- Only image URLs are stored in MongoDB
+
+### 📅 Appointments
+- Users can book appointments with providers
+- Providers can manage their bookings
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- React (Create React App)
+- React Router DOM
+- Tailwind CSS
+- Deployed on **Vercel**
+
+### Backend
+- Node.js
+- Express.js
+- JWT Authentication
+- Multer (Memory Storage)
+- Deployed on **Render**
+
+### Database & Storage
+- MongoDB Atlas (Database)
+- Supabase Storage (Image uploads)
+
+---
+
+## 📂 Project Structure
+
+TailorHub_Full_Stack/
+│
+├── backend/
+│ ├── config/
+│ ├── middleware/
+│ ├── models/
+│ ├── routes/
+│ ├── server.js
+│ └── package.json
+│
+├── frontend/
+│ ├── src/
+│ ├── public/
+│ ├── package.json
+│ └── .env
+│
+└── README.md
+
+▶️ Running the Project Locally
+Backend
+cd backend
+npm install
+npm run dev
 
 Frontend
-React.js, React Router, Axios, TailwindCSS / Bootstrap
-
-Backend
-Node.js, Express.js, JSON Web Tokens (JWT Authentication)
-
-Database
-MongoDB with Mongoose
+cd frontend
+npm install
+npm start
