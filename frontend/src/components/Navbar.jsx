@@ -4,7 +4,6 @@ import { useState } from "react";
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-
   const [menuOpen, setMenuOpen] = useState(false);
 
   const token = localStorage.getItem("token");
@@ -28,7 +27,7 @@ export default function Navbar() {
           ✂️ <span className="text-yellow-400">TailorHUB</span>
         </Link>
 
-        {/* DESKTOP LINKS */}
+        {/* DESKTOP MENU */}
         <ul className="hidden md:flex gap-6 font-medium items-center">
           {!isProvider && (
             <>
@@ -37,12 +36,6 @@ export default function Navbar() {
               <li><Link to="/team">Team</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/contact">Contact</Link></li>
-
-              {token && (
-                <li className="text-yellow-500 font-semibold">
-                  <Link to="/appointment">Appointment</Link>
-                </li>
-              )}
             </>
           )}
 
@@ -56,27 +49,19 @@ export default function Navbar() {
 
           {!token ? (
             <>
-              <Link to="/login" className="border px-4 py-2 rounded-full">
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="bg-yellow-400 px-4 py-2 rounded-full font-semibold"
-              >
+              <Link to="/login" className="border px-4 py-2 rounded-full">Login</Link>
+              <Link to="/register" className="bg-yellow-400 px-4 py-2 rounded-full font-semibold">
                 Register
               </Link>
             </>
           ) : (
-            <button
-              onClick={logout}
-              className="bg-red-500 text-white px-4 py-2 rounded-full"
-            >
+            <button onClick={logout} className="bg-red-500 text-white px-4 py-2 rounded-full">
               Logout
             </button>
           )}
         </ul>
 
-        {/* HAMBURGER (MOBILE) */}
+        {/* HAMBURGER */}
         <button
           className="md:hidden text-3xl"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -87,31 +72,24 @@ export default function Navbar() {
 
       {/* MOBILE MENU */}
       {menuOpen && (
-        <div className="md:hidden bg-white px-6 pb-4 shadow">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow px-6 py-4">
           <ul className="flex flex-col gap-4 font-medium">
+
             {!isProvider && (
               <>
-                <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
-                <li><Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link></li>
-                <li><Link to="/team" onClick={() => setMenuOpen(false)}>Team</Link></li>
-                <li><Link to="/about" onClick={() => setMenuOpen(false)}>About</Link></li>
-                <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
-
-                {token && (
-                  <li className="text-yellow-500 font-semibold">
-                    <Link to="/appointment" onClick={() => setMenuOpen(false)}>
-                      Appointment
-                    </Link>
-                  </li>
-                )}
+                <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+                <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>
+                <Link to="/team" onClick={() => setMenuOpen(false)}>Team</Link>
+                <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+                <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
               </>
             )}
 
             {isProvider && isProviderRoute && (
               <>
-                <li><Link to="/provider/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link></li>
-                <li><Link to="/provider/services" onClick={() => setMenuOpen(false)}>My Services</Link></li>
-                <li><Link to="/provider/appointments" onClick={() => setMenuOpen(false)}>Appointments</Link></li>
+                <Link to="/provider/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+                <Link to="/provider/services" onClick={() => setMenuOpen(false)}>My Services</Link>
+                <Link to="/provider/appointments" onClick={() => setMenuOpen(false)}>Appointments</Link>
               </>
             )}
 
@@ -134,6 +112,7 @@ export default function Navbar() {
                 Logout
               </button>
             )}
+
           </ul>
         </div>
       )}
